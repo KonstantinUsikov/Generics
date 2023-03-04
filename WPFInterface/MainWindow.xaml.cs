@@ -650,29 +650,6 @@ namespace WPFInterface
                         switch (Cb_Sort_Method.SelectedIndex)
                         {
                             case 0:
-                                Sorter.BubbleSort(t, Car.ComparerColor,
-                                    Tg_Ascending.IsChecked.Value);
-                                break;
-                            case 1:
-                                Sorter.InsertSort(t, Car.ComparerColor,
-                                    Tg_Ascending.IsChecked.Value);
-                                break;
-                            case 2:
-                                Sorter.MergeSort(t, Car.ComparerColor,
-                                    Tg_Ascending.IsChecked.Value);
-                                break;
-                            case 3:
-                                Sorter.QuickSort(t, Car.ComparerColor,
-                                    Tg_Ascending.IsChecked.Value);
-                                break;
-                            default:
-                                throw new IndexOutOfRangeException();
-                        }
-                        break;
-                    case 6:
-                        switch (Cb_Sort_Method.SelectedIndex)
-                        {
-                            case 0:
                                 Sorter.BubbleSort(t, Car.ComparerMileage,
                                     Tg_Ascending.IsChecked.Value);
                                 break;
@@ -692,7 +669,7 @@ namespace WPFInterface
                                 throw new IndexOutOfRangeException();
                         }
                         break;
-                    case 7:
+                    case 6:
                         switch (Cb_Sort_Method.SelectedIndex)
                         {
                             case 0:
@@ -715,7 +692,7 @@ namespace WPFInterface
                                 throw new IndexOutOfRangeException();
                         }
                         break;
-                    case 8:
+                    case 7:
                         switch (Cb_Sort_Method.SelectedIndex)
                         {
                             case 0:
