@@ -5,8 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFInterface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Generics" Height="500" Width="800"
+        FontSize="20">
     <Grid>
-
+        <TabControl>
+            <TabItem Header="Интеграл">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0" Header="Функция">
+                        <ComboBox></ComboBox>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Header="Нижний предел интегрирования">
+                        <TextBox />
+                    </GroupBox>
+                    <GroupBox Grid.Row="2" Header="Верхний предел интегрирования">
+                        <TextBox />
+                    </GroupBox>
+                    <GroupBox Grid.Row="3" Header="Количество шагов">
+                        <TextBox />
+                    </GroupBox>
+                    <GroupBox Grid.Row="4" Header="Параллельность">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton VerticalContentAlignment="Center" Content="Параллельно"/>
+                            <RadioButton VerticalContentAlignment="Center" Content="Не параллельно"/>
+                        </StackPanel>
+                        
+                    </GroupBox>
+                    <GroupBox Grid.Row="5" Header="Вывод">
+                        <TextBox/>
+                    </GroupBox>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Коллекции">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0" Header="Тип">
+                        <ComboBox></ComboBox>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Header="Действия">
+                        <Grid></Grid>
+                    </GroupBox>
+                    <GroupBox Grid.Row="2" Header="Организация">
+                        <Grid></Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Сортировка">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0" Header="Тип">
+                        <ComboBox></ComboBox>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Header="Действия">
+                        <Grid></Grid>
+                    </GroupBox>
+                    <GroupBox Grid.Row="2" Header="Организация">
+                        <Grid></Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
