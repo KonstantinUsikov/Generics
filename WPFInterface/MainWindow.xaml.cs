@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassLibraryGenerics;
+using Color = ClassLibraryGenerics.Color;
 
 namespace WPFInterface
 {
@@ -172,9 +173,618 @@ namespace WPFInterface
         
         #region Sorting
         
+        List<Student> students = new ();
+        List<Car> cars = new ();
+
+        string Random_String(int length)
+        {
+            Random rnd = new();
+            StringBuilder sb = new();
+            for (int i = 0; i < length; i++)
+            {
+                sb.Append((char)rnd.Next('a', 'z' + 1));
+            }
+            return sb.ToString();
+        }
         
-        
+        private void Sorting_Fill(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized)return;
+            Random rnd = new();
+            students.Clear();
+            cars.Clear();
+            WrP_Sorting.Children.Clear();
+            
+            if (Cb_Sorting.SelectedIndex == 0)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Student adding = new Student(Random_String(rnd.Next(3, 20)), Random_String(rnd.Next(3, 20)),
+                        Random_String(rnd.Next(3, 20)), rnd.Next(18, 30), 150 + (rnd.NextDouble() * 60),
+                        50 + (rnd.NextDouble() * 50), 2 + (rnd.NextDouble() * 3));
+                    students.Add(adding);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Car adding = new Car(Random_String(rnd.Next(3, 12)),rnd.Next(-1000,3000),rnd.NextDouble()*1000,rnd.NextDouble()*1000,
+                        (Color)rnd.Next((int)Color.White, (int)Color.Violet+1),rnd.NextDouble()*1000000);
+                    cars.Add(adding);
+                }
+            }
+            Refill_Panel();
+        }
+
+        void Refill_Panel()
+        {
+            WrP_Sorting.Children.Clear();
+            if (Cb_Sorting.SelectedIndex == 0)
+            {
+                foreach (var student in students)
+                {
+                    string adder = $"ФИО: {student.LastName} {student.FirstName} {student.Patronymic}\n" +
+                                   $"Возраст: {student.Age}\n" +
+                                   $"Рост: {student.Height}\n" +
+                                   $"Вес: {student.Weight}\n" +
+                                   $"Средний Балл: {student.AverageMark}";
+                    TextBox aa = new();
+                    aa.Text = adder;
+                    aa.Margin = new(2);
+                    aa.Height = 150;
+                    aa.Width = 400;
+                    aa.IsReadOnly = true;
+                    WrP_Sorting.Children.Add(aa);
+                }
+            }
+            else
+            {
+                foreach (var car in cars)
+                {
+                    string adder = $"Брэнд: {car.Brand}\n" +
+                                   $"Год Выпуска: {car.Year}\n" +
+                                   $"Пробег: {car.Mileage}\n" +
+                                   $"Максимальная Скорость: {car.MaxSpeed}\n" +
+                                   $"Цвет: {car.Color}\n" +
+                                   $"Объем Двигателя: {car.Volume}";
+                    TextBox aa = new();
+                    aa.Text = adder;
+                    aa.Margin = new(2);
+                    aa.Height = 170;
+                    aa.Width = 400;
+                    aa.IsReadOnly = true;
+                    WrP_Sorting.Children.Add(aa);
+                }
+            }
+        }
+        private void Sorting_Sort(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized)return;
+            Stopwatch timer = Stopwatch.StartNew();
+            if (Cb_Sorting.SelectedIndex == 0)
+            {
+                Student[] t = students.ToArray();
+                switch (Cb_Sort_Type.SelectedIndex)
+                {
+                    case 0:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerLastNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerLastNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerLastNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerLastNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 1:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerLastNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerLastNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerLastNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerLastNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 2:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerFirstNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerFirstNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerFirstNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerFirstNameAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 3:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerFirstNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerFirstNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerFirstNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerFirstNameLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 4:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerPatronymicAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerPatronymicAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerPatronymicAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerPatronymicAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 5:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerPatronymicLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerPatronymicLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerPatronymicLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerPatronymicLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 6:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerAge,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerAge,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerAge,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerAge,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 7:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerHeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerHeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerHeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerHeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 8:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerWeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerWeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerWeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerWeight,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 9:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerAverageMark,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerAverageMark,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerAverageMark,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerAverageMark,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 10:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Student.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Student.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Student.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Student.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    default:
+                        throw new IndexOutOfRangeException();
+                }
+
+                students = t.ToList();
+            }
+            else
+            {
+                Car[] t = cars.ToArray();
+                switch (Cb_Sort_Type.SelectedIndex)
+                {
+                    case 0:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerBrandAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerBrandAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerBrandAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerBrandAlphabet,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 1:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerBrandLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerBrandLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerBrandLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerBrandLength,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 2:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerYear,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerYear,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerYear,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerYear,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 3:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerMaxSpeed,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerMaxSpeed,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerMaxSpeed,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerMaxSpeed,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 4:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerVolume,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerVolume,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerVolume,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerVolume,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 5:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 6:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerMileage,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerMileage,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerMileage,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerMileage,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 7:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerColor,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    case 8:
+                        switch (Cb_Sort_Method.SelectedIndex)
+                        {
+                            case 0:
+                                Sorter.BubbleSort(t, Car.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 1:
+                                Sorter.InsertSort(t, Car.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 2:
+                                Sorter.MergeSort(t, Car.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            case 3:
+                                Sorter.QuickSort(t, Car.ComparerComplex,
+                                    Tg_Ascending.IsChecked.Value);
+                                break;
+                            default:
+                                throw new IndexOutOfRangeException();
+                        }
+                        break;
+                    default:
+                        throw new IndexOutOfRangeException();
+                }
+
+                cars = t.ToList();
+            }
+
+            Tx_Sorting_Result.Text = timer.Elapsed.ToString();
+            Refill_Panel();
+        }
+
+        private void Sorting_Clear(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized)return;
+            students.Clear();
+            cars.Clear();
+            WrP_Sorting.Children.Clear();
+            Cb_Sort_Type.Items.Clear();
+            if (Cb_Sorting.SelectedIndex == 0)
+            {
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Фамилия", IsSelected = true});
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Длина Фамилии" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Имя" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Длина Имени" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Отчество" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Длина Отчества" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Возраст" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Рост" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Вес" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Средний Балл" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Комплексный" });
+            }
+            else
+            {
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Название Брэнда", IsSelected = true});
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Длина Названия Брэнда" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Год Выпуска" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Максимальная Скорость" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Объем двигателя" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Пробег" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Цвет" });
+                Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Комплексный" });
+            }
+        }
+
         #endregion
+
         
     }
 }

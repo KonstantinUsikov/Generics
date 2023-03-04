@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFInterface"
         mc:Ignorable="d"
-        Title="Generics" Height="500" Width="800"
+        Title="Generics" Height="600" Width="800"
         FontSize="20">
     <Grid>
         <TabControl>
@@ -13,11 +13,11 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="Функция" >
                         <ComboBox SelectionChanged="Try_Calc_Integral" Name="Cb_Integral">
@@ -67,7 +67,7 @@
                             <Button Content="Очистить" Click="Clear_Collection" Margin="2"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Row="2" Header="Организация">
+                    <GroupBox Grid.Row="2" Header="Организация" >
                         <WrapPanel Orientation="Horizontal" Name="WrP_Collection" />
                     </GroupBox>
                 </Grid>
@@ -78,19 +78,57 @@
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="Тип данных">
-                        <ComboBox></ComboBox>
+                        <ComboBox Name="Cb_Sorting" SelectionChanged="Sorting_Clear">
+                            <ComboBoxItem Content="Студент" IsSelected="True" />
+                            <ComboBoxItem Content="Автомобиль" />
+                        </ComboBox>
                     </GroupBox>
                     <GroupBox Grid.Row="1" Header="Тип сортировки">
-                        <ComboBox></ComboBox>
+                        <ComboBox Name="Cb_Sort_Type">
+                            <ComboBoxItem Content="Фамилия" IsSelected="True"/>
+                            <ComboBoxItem Content="Длина Фамилии"/>
+                            <ComboBoxItem Content="Имя"/>
+                            <ComboBoxItem Content="Длина Имени"/>
+                            <ComboBoxItem Content="Отчество"/>
+                            <ComboBoxItem Content="Длина Отчества"/>
+                            <ComboBoxItem Content="Возраст"/>
+                            <ComboBoxItem Content="Рост"/>
+                            <ComboBoxItem Content="Вес"/>
+                            <ComboBoxItem Content="Средний Балл"/>
+                            <ComboBoxItem Content="Комплексный"/>
+                        </ComboBox>
                     </GroupBox>
-                    <GroupBox Grid.Row="2" Header="Действия">
-                        <Grid></Grid>
+                    <GroupBox Grid.Row="2" Header="Метод Сортироваки">
+                        <ComboBox Name="Cb_Sort_Method" >
+                            <ComboBoxItem Content="Пузырьковая" IsSelected="True"/>
+                            <ComboBoxItem Content="Вставками"/>
+                            <ComboBoxItem Content="Слиянием"/>
+                            <ComboBoxItem Content="Быстрая"/>
+                        </ComboBox>
                     </GroupBox>
-                    <GroupBox Grid.Row="3" Header="Организация">
-                        <StackPanel Orientation="Horizontal" />
+                    <GroupBox Grid.Row="3" Header="Действия">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Заполнить" Click="Sorting_Fill" Margin="2"/>
+                            <Button Content="Сортировать" Click="Sorting_Sort" Margin="2"/>
+                            <Button Content="Очистить" Click="Sorting_Clear" Margin="2"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="4" Header="Вывод">
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton Name="Tg_Ascending" Content="По Возрастанию" Margin="2"/>
+                            <TextBox Name="Tx_Sorting_Result" Width="300" Margin="2" IsReadOnly="True"/>    
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="5" Header="Организация">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <WrapPanel Orientation="Horizontal" Name="WrP_Sorting"/>    
+                        </ScrollViewer>
+                        
                     </GroupBox>
                 </Grid>
             </TabItem>
