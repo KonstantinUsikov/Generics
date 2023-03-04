@@ -86,6 +86,7 @@
                         <ComboBox Name="Cb_Sorting" SelectionChanged="Sorting_Clear">
                             <ComboBoxItem Content="Студент" IsSelected="True" />
                             <ComboBoxItem Content="Автомобиль" />
+                            <ComboBoxItem Content="Прямоугольник" />
                         </ComboBox>
                     </GroupBox>
                     <GroupBox Grid.Row="1" Header="Тип сортировки">
