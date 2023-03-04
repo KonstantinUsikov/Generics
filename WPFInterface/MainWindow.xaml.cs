@@ -915,6 +915,7 @@ namespace WPFInterface
             if (!IsInitialized)return;
             students.Clear();
             cars.Clear();
+            rectangles.Clear();
             WrP_Sorting.Children.Clear();
             Cb_Sort_Type.Items.Clear();
             switch (Cb_Sorting.SelectedIndex)
