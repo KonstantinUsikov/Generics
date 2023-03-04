@@ -120,7 +120,7 @@
                     </GroupBox>
                     <GroupBox Grid.Row="4" Header="Вывод">
                         <StackPanel Orientation="Horizontal">
-                            <ToggleButton Name="Tg_Ascending" Content="По Возрастанию" Margin="2"/>
+                            <CheckBox VerticalContentAlignment="Center" Name="Tg_Ascending" Content="По Возрастанию" Margin="2"/>
                             <TextBox Name="Tx_Sorting_Result" Width="300" Margin="2" IsReadOnly="True"/>    
                         </StackPanel>
                     </GroupBox>
