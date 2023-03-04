@@ -55,13 +55,20 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="Тип">
-                        <ComboBox></ComboBox>
+                        <ComboBox Name="Cb_Collection" SelectionChanged="Clear_Collection">
+                            <ComboBoxItem Content="Стэк" IsSelected="True"/>
+                            <ComboBoxItem Content="Очередь"/>
+                        </ComboBox>
                     </GroupBox>
                     <GroupBox Grid.Row="1" Header="Действия">
-                        <Grid></Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Добавить" Click="Add_Element" Margin="2"/>
+                            <Button Content="Удалить" Click="Remove_Element" Margin="2"/>
+                            <Button Content="Очистить" Click="Clear_Collection" Margin="2"/>
+                        </StackPanel>
                     </GroupBox>
                     <GroupBox Grid.Row="2" Header="Организация">
-                        <StackPanel Orientation="Horizontal" />
+                        <WrapPanel Orientation="Horizontal" Name="StP_Collection" />
                     </GroupBox>
                 </Grid>
             </TabItem>
