@@ -19,29 +19,32 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="120"/>
                     </Grid.RowDefinitions>
-                    <GroupBox Grid.Row="0" Header="Функция">
-                        <ComboBox></ComboBox>
+                    <GroupBox Grid.Row="0" Header="Функция" >
+                        <ComboBox SelectionChanged="Try_Calc_Integral" Name="Cb_Integral">
+                            <ComboBoxItem Content="x^2" IsSelected="True"/>
+                            <ComboBoxItem Content="x" />
+                            <ComboBoxItem Content="sin(x)" />
+                            <ComboBoxItem Content="cos(x)" />
+                        </ComboBox>
                     </GroupBox>
                     <GroupBox Grid.Row="1" Header="Нижний предел интегрирования">
-                        <TextBox />
+                        <TextBox TextChanged="Try_Calc_Integral" Name="Tx_Left"/>
                     </GroupBox>
                     <GroupBox Grid.Row="2" Header="Верхний предел интегрирования">
-                        <TextBox />
+                        <TextBox TextChanged="Try_Calc_Integral" Name="Tx_Right"/>
                     </GroupBox>
                     <GroupBox Grid.Row="3" Header="Количество шагов">
-                        <TextBox />
+                        <TextBox TextChanged="Try_Calc_Integral" Name="Tx_Steps"/>
                     </GroupBox>
                     <GroupBox Grid.Row="4" Header="Параллельность">
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton VerticalContentAlignment="Center" Content="Параллельно"/>
-                            <RadioButton VerticalContentAlignment="Center" Content="Не параллельно"/>
+                            <RadioButton Name="Rb_Parallel" VerticalContentAlignment="Center" Content="Параллельно" IsChecked="True" Checked="Try_Calc_Integral"/>
+                            <RadioButton VerticalContentAlignment="Center" Content="Не параллельно" Checked="Try_Calc_Integral"/>
                         </StackPanel>
-                        
                     </GroupBox>
                     <GroupBox Grid.Row="5" Header="Вывод">
-                        <TextBox/>
+                        <TextBox Name="Tx_Integral_Output" IsReadOnly="True"/>
                     </GroupBox>
-                    
                 </Grid>
             </TabItem>
             <TabItem Header="Коллекции">
@@ -58,7 +61,7 @@
                         <Grid></Grid>
                     </GroupBox>
                     <GroupBox Grid.Row="2" Header="Организация">
-                        <Grid></Grid>
+                        <StackPanel Orientation="Horizontal" />
                     </GroupBox>
                 </Grid>
             </TabItem>
@@ -67,16 +70,20 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <GroupBox Grid.Row="0" Header="Тип">
+                    <GroupBox Grid.Row="0" Header="Тип данных">
                         <ComboBox></ComboBox>
                     </GroupBox>
-                    <GroupBox Grid.Row="1" Header="Действия">
+                    <GroupBox Grid.Row="1" Header="Тип сортировки">
+                        <ComboBox></ComboBox>
+                    </GroupBox>
+                    <GroupBox Grid.Row="2" Header="Действия">
                         <Grid></Grid>
                     </GroupBox>
-                    <GroupBox Grid.Row="2" Header="Организация">
-                        <Grid></Grid>
+                    <GroupBox Grid.Row="3" Header="Организация">
+                        <StackPanel Orientation="Horizontal" />
                     </GroupBox>
                 </Grid>
             </TabItem>
