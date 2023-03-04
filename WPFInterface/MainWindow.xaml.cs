@@ -107,7 +107,17 @@ namespace WPFInterface
         }
 
         #endregion
+
+        #region Collections
+
+        
+
+        #endregion
+        
+        #region Sorting
         
         
+        
+        #endregion
     }
 }
