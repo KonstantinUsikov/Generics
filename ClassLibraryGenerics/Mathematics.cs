@@ -39,9 +39,11 @@
         {
             double res = 0;
             double step = (b - a) / steps;  
+            double[] values = new double[steps + 1];
             Parallel.For(0, steps + 1, i =>
-                res += 2 * func(a + step * i));
-            res -= func(a) + func(b);
+                values[i] = func(a + step * i));
+            for (int i = 0; i < steps; i++)
+                res += values[i] + values[i + 1];
             res *= 0.5 * step;
             return res;
         }
