@@ -110,7 +110,63 @@ namespace WPFInterface
 
         #region Collections
 
+        MyStack<int> st = new ();
+        MyQueue<int> qu = new();
+        int counter_collection = 1;
+        private void Add_Element(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized) return;
+            if (Cb_Collection.SelectedIndex == 0)
+            {
+                st.Add(counter_collection);
+                TextBox adder = new();
+                adder.Text = counter_collection.ToString();
+                adder.Margin = new(2);
+                adder.Height = 30;
+                adder.Width = 50;
+                adder.IsReadOnly = true;
+                WrP_Collection.Children.Insert(0,adder);
+            }
+            else
+            {
+                qu.Add(counter_collection);
+                TextBox adder = new();
+                adder.Text = counter_collection.ToString();
+                adder.Margin = new(2);
+                adder.Height = 30;
+                adder.Width = 50;
+                adder.IsReadOnly = true;
+                WrP_Collection.Children.Add(adder);
+            }
+
+            counter_collection++;
+        }
+
+        private void Remove_Element(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized) return;
+            if (Cb_Collection.SelectedIndex == 0)
+            {
+                if (st.Count == 0) return;
+                st.Remove();
+                WrP_Collection.Children.RemoveAt(0);
+            }
+            else
+            {
+                if (qu.Count == 0) return;
+                qu.Remove();
+                WrP_Collection.Children.RemoveAt(0);
+            }
+        }
         
+        private void Clear_Collection(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized)return;
+            st = new();
+            qu = new();
+            WrP_Collection.Children.Clear();
+            counter_collection = 1;
+        }
 
         #endregion
         
@@ -119,5 +175,6 @@ namespace WPFInterface
         
         
         #endregion
+        
     }
 }
