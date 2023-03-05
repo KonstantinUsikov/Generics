@@ -110,13 +110,18 @@ namespace WPFInterface {
             string selectedType = types[selectedTypeIndex];
             TextBox adder = new();
             adder.Margin = new(2);
-            adder.Height = 30;
-            adder.Width = 50;
+            adder.Width = 400;
             adder.IsReadOnly = true;
             switch (selectedType) {
                 case "Автомобиль": {
                         Car car = new();
-                        adder.Text = car.ToString();
+                        adder.Text = $"Брэнд: {car.Brand}\n" +
+                                     $"Год Выпуска: {car.Year}\n" +
+                                     $"Пробег: {car.Mileage}\n" +
+                                     $"Максимальная Скорость: {car.MaxSpeed}\n" +
+                                     $"Цвет: {car.Color}\n" +
+                                     $"Объем Двигателя: {car.Volume}";
+                        adder.Height = 170;
                         if (selectedCollection == "Стэк") {
                             st.Add(car);
                             WrP_Collection.Children.Insert(0, adder);
@@ -128,7 +133,12 @@ namespace WPFInterface {
                     }
                 case "Студент": {
                         Student student = new();
-                        adder.Text = student.ToString();
+                        adder.Text = $"ФИО: {student.LastName} {student.FirstName} {student.Patronymic}\n" +
+                                     $"Возраст: {student.Age}\n" +
+                                     $"Рост: {student.Height}\n" +
+                                     $"Вес: {student.Weight}\n" +
+                                     $"Средний Балл: {student.AverageMark}";
+                        adder.Height = 150;
                         if (selectedCollection == "Стэк") {
                             st.Add(student);
                             WrP_Collection.Children.Insert(0, adder);
@@ -140,7 +150,11 @@ namespace WPFInterface {
                     }
                 case "Прямоугольник": {
                         Rectangle rectangle = new();
-                        adder.Text = rectangle.ToString();
+                        adder.Text = $"Сторона А: {rectangle.A}\n" +
+                                     $"Сторона Б: {rectangle.B}\n" +
+                                     $"Периметр: {rectangle.Perimeter}\n" +
+                                     $"Площадь: {rectangle.Area}";
+                        adder.Height = 130;
                         if (selectedCollection == "Стэк") {
                             st.Add(rectangle);
                             WrP_Collection.Children.Insert(0, adder);
