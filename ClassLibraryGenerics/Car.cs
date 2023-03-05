@@ -1,10 +1,8 @@
-﻿namespace ClassLibraryGenerics
-{
+﻿namespace ClassLibraryGenerics {
     /// <summary>
     /// Перечисление "Цвет".
     /// </summary>
-    public enum Color
-    {
+    public enum Color {
         White,
         Gray,
         Black,
@@ -20,10 +18,9 @@
     /// <summary>
     /// Класс "Автомобиль".
     /// </summary>
-    public class Car
-    {
+    public class Car : IType {
         #region Поля
-        private static string[] brands = new string[] { "Audi", "BMW", "Ford", "Honda", "Hyundai", "Kia", "Lada", "Mazda", "Mercedes-Benz", "Mitsubishi", "Nissan", "Renault", "Skoda", "Toyota", "Volkswagen", "Lexus", "Subaru", "Suzuki", "Cadillac", "Chevrolet", "Hummer", "Jeep", "Tesla", "Opel", "Porsche", "Bentley", "Bugatti", "Citroen", "Ferrari", "Fiat", "Jaguar", "Lamborghini", "Land Rover", "Maserati", "Maybach", "Peugeot", "Rolls-Royce", "Rover", "Volvo", "Smart"};
+        private static string[] brands = new string[] { "Audi", "BMW", "Ford", "Honda", "Hyundai", "Kia", "Lada", "Mazda", "Mercedes-Benz", "Mitsubishi", "Nissan", "Renault", "Skoda", "Toyota", "Volkswagen", "Lexus", "Subaru", "Suzuki", "Cadillac", "Chevrolet", "Hummer", "Jeep", "Tesla", "Opel", "Porsche", "Bentley", "Bugatti", "Citroen", "Ferrari", "Fiat", "Jaguar", "Lamborghini", "Land Rover", "Maserati", "Maybach", "Peugeot", "Rolls-Royce", "Rover", "Volvo", "Smart" };
 
         private string brand;  // марка
         private int year;  // год выпуска
@@ -35,48 +32,42 @@
         /// <summary>
         /// Марка автомобиля.
         /// </summary>
-        public string Brand
-        {
+        public string Brand {
             get { return brand; }
         }
 
         /// <summary>
         /// Год выпуска автомобиля.
         /// </summary>
-        public int Year
-        {
+        public int Year {
             get { return year; }
         }
 
         /// <summary>
         /// Максимальная скорость автомобиля (км/ч).
         /// </summary>
-        public double MaxSpeed
-        {
+        public double MaxSpeed {
             get { return maxSpeed; }
         }
 
         /// <summary>
         /// Объем двигателя автомобиля (л).
         /// </summary>
-        public double Volume
-        {
+        public double Volume {
             get { return volume; }
         }
 
         /// <summary>
         /// Цвет автомобиля.
         /// </summary>
-        public Color Color
-        {
+        public Color Color {
             get { return color; }
         }
 
         /// <summary>
         /// Пробег автомобиля (км).
         /// </summary>
-        public double Mileage
-        {
+        public double Mileage {
             get { return mileage; }
         }
         #endregion
@@ -85,21 +76,22 @@
         /// <summary>
         /// Конструктор по умолчанию.
         /// </summary>
-        public Car()
-        {
-            brand = "BMW";
-            year = 2022;
-            maxSpeed = 200;
-            volume = 1.6;
-            color = Color.Black;
-            mileage = 1000;
+        public Car() {
+            string[] brands = new string[] { "Vol", "Toy", "For", "BMW", "Hon", "Hyu", "Ren", "Aud", "Lad", "Lex" };
+            Color[] colors = new Color[] { Color.Red, Color.Green, Color.Blue, Color.Gray, Color.White, Color.Black };
+            Random r = new Random();
+            brand = brands[r.Next(0, brands.Length - 1)];
+            year = r.Next(1990, 2020);
+            maxSpeed = r.Next(160, 230);
+            volume = 10 + r.NextDouble() * 4;
+            color = colors[r.Next(0, colors.Length - 1)];
+            mileage = r.NextDouble() * 1000000;
         }
 
         /// <summary>
         /// Конструктор по переданным параметрам.
         /// </summary>
-        public Car(string brand, int year, double maxSpeed, double volume, Color color, double mileage)
-        {
+        public Car(string brand, int year, double maxSpeed, double volume, Color color, double mileage) {
             this.brand = brand;
             this.year = year;
             this.maxSpeed = maxSpeed;
@@ -114,8 +106,7 @@
         /// Переопределение метода ToString().
         /// </summary>
         /// <returns> строковое представление полей класса </returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return $"brand = {brand}, year = {year}, maxSpeed = {maxSpeed}, volume = {volume}, color = {color}, mileage = {mileage}";
         }
         #endregion
@@ -127,8 +118,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerBrandAlphabet(Car c1, Car c2)
-        {
+        public static int ComparerBrandAlphabet(Car c1, Car c2) {
             return c1.Brand.CompareTo(c2.Brand);
         }
 
@@ -138,8 +128,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerBrandLength(Car c1, Car c2)
-        {
+        public static int ComparerBrandLength(Car c1, Car c2) {
             return c1.Brand.Length.CompareTo(c2.Brand.Length);
         }
 
@@ -149,8 +138,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerYear(Car c1, Car c2)
-        {
+        public static int ComparerYear(Car c1, Car c2) {
             if (c1.Year > c2.Year)
                 return 1;
             else if (c1.Year < c2.Year)
@@ -165,8 +153,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerMaxSpeed(Car c1, Car c2)
-        {
+        public static int ComparerMaxSpeed(Car c1, Car c2) {
             if (c1.MaxSpeed > c2.MaxSpeed)
                 return 1;
             else if (c1.MaxSpeed < c2.MaxSpeed)
@@ -181,8 +168,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerVolume(Car c1, Car c2)
-        {
+        public static int ComparerVolume(Car c1, Car c2) {
             if (c1.Volume > c2.Volume)
                 return 1;
             else if (c1.Volume < c2.Volume)
@@ -197,8 +183,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerColor(Car c1, Car c2)
-        {
+        public static int ComparerColor(Car c1, Car c2) {
             if (c1.color > c2.color)
                 return 1;
             else if (c1.color < c2.color)
@@ -213,8 +198,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerMileage(Car c1, Car c2)
-        {
+        public static int ComparerMileage(Car c1, Car c2) {
             if (c1.Mileage > c2.Mileage)
                 return 1;
             else if (c1.Mileage < c2.Mileage)
@@ -229,8 +213,7 @@
         /// <param name="c1"> первый автомобиль </param>
         /// <param name="c2"> второй автомобиль </param>
         /// <returns> Если результат "больше" : 1; "меньше" : -1; "равно" : 0 </returns>
-        public static int ComparerComplex(Car c1, Car c2)
-        {
+        public static int ComparerComplex(Car c1, Car c2) {
             int n = ComparerMaxSpeed(c1, c2);
             if (n != 0) return n;
             n = ComparerVolume(c1, c2);

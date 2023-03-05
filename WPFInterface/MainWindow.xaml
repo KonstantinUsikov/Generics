@@ -52,6 +52,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="Тип">
@@ -60,14 +61,21 @@
                             <ComboBoxItem Content="Очередь"/>
                         </ComboBox>
                     </GroupBox>
-                    <GroupBox Grid.Row="1" Header="Действия">
+                    <GroupBox Grid.Row="1" Header="Тип данных">
+                        <ComboBox Name="Cb_Type_Collection" SelectionChanged="Clear_Collection">
+                            <ComboBoxItem Content="Автомобиль" IsSelected="True"/>
+                            <ComboBoxItem Content="Студент"/>
+                            <ComboBoxItem Content="Прямоугольник"/>
+                        </ComboBox>
+                    </GroupBox>
+                    <GroupBox Grid.Row="2" Header="Действия">
                         <StackPanel Orientation="Horizontal">
                             <Button Content="Добавить" Click="Add_Element" Margin="2"/>
                             <Button Content="Удалить" Click="Remove_Element" Margin="2"/>
                             <Button Content="Очистить" Click="Clear_Collection" Margin="2"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Row="2" Header="Организация" >
+                    <GroupBox Grid.Row="3" Header="Организация" >
                         <WrapPanel Orientation="Horizontal" Name="WrP_Collection" />
                     </GroupBox>
                 </Grid>
@@ -122,14 +130,14 @@
                     <GroupBox Grid.Row="4" Header="Вывод">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox VerticalContentAlignment="Center" Name="Tg_Ascending" Content="По Возрастанию" Margin="2"/>
-                            <TextBox Name="Tx_Sorting_Result" Width="300" Margin="2" IsReadOnly="True"/>    
+                            <TextBox Name="Tx_Sorting_Result" Width="300" Margin="2" IsReadOnly="True"/>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Grid.Row="5" Header="Организация">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                            <WrapPanel Orientation="Horizontal" Name="WrP_Sorting"/>    
+                            <WrapPanel Orientation="Horizontal" Name="WrP_Sorting"/>
                         </ScrollViewer>
-                        
+
                     </GroupBox>
                 </Grid>
             </TabItem>

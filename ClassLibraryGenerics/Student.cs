@@ -3,7 +3,7 @@
     /// <summary>
     /// Класс "Студент".
     /// </summary>
-    public class Student
+    public class Student: IType
     {
         #region Поля
         private string lastName;  // фамилия
@@ -77,13 +77,17 @@
         /// </summary>
         public Student()
         {
-            lastName = "Ivanov";
-            firstName = "Ivan";
-            patronymic = "Ivanovich";
-            age = 20;
-            height = 179;
-            weight = 70;
-            averageMark = 4.7;
+            string[] lastNames = new string[] { "Иванов", "Миронов", "Усиков", "Орлов", "Рогов" };
+            string[] firstNames = new string[] { "Артём", "Максим", "Константин", "Дмитрий", "Алексей" };
+            string[] patronomics = new string[] { "Владимирович", "Александрович", "Дмитриевич", "Сергеевич", "Никитич" };
+            Random r = new Random();
+            lastName = lastNames[r.Next(0, lastNames.Length - 1)];
+            firstName = firstNames[r.Next(0, firstNames.Length - 1)];
+            patronymic = patronomics[r.Next(0, patronomics.Length - 1)];
+            age = r.Next(1, 100);
+            height = r.Next(140, 210);
+            weight = r.Next(45, 110);
+            averageMark = 2 + r.NextDouble() * 3;
         }
 
         /// <summary>

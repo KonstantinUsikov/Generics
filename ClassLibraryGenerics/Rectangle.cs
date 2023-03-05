@@ -3,7 +3,7 @@
     /// <summary>
     /// Класс "Прямоугольник".
     /// </summary>
-    public class Rectangle
+    public class Rectangle: IType
     {
         #region Поля
         private double a;  // меньшая сторона прямоугольника
@@ -48,8 +48,9 @@
         /// </summary>
         public Rectangle()
         {
-            a = 0;
-            b = 0;
+            Random r = new Random();
+            a = r.NextDouble() * 50;
+            b = r.NextDouble() * 50;
         }
 
         /// <summary>
