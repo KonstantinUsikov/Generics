@@ -122,7 +122,15 @@
                         </ComboBox>
                     </GroupBox>
                     <GroupBox Grid.Row="3" Header="Количество элементов">
-                        <Slider Name="Sld_Sorting_Element_Count" Minimum="2" Maximum="10000" ValueChanged="Sld_Sorting_Element_Count_OnValueChanged" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="120" />
+                            </Grid.ColumnDefinitions>
+                            <Slider VerticalAlignment="Center" Name="Sld_Sorting_Element_Count" Minimum="2" Maximum="10000" ValueChanged="Sld_Sorting_Element_Count_OnValueChanged" />
+                            <TextBox Grid.Column="1" Name="Tx_Sort_Sld_Repr" IsReadOnly="True" Text="2"/>
+                        </Grid>
+                        
                     </GroupBox>
                     <GroupBox Grid.Row="4" Header="Действия">
                         <StackPanel Orientation="Horizontal">

@@ -565,12 +565,13 @@ namespace WPFInterface {
                     throw new IndexOutOfRangeException();
             }
         }
-
-        #endregion
-
         private void Sld_Sorting_Element_Count_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Sld_Sorting_Element_Count.ToolTip = Sld_Sorting_Element_Count.Value;
+            if (!IsInitialized) return;
+            Tx_Sort_Sld_Repr.Text = ((int)Math.Round(Sld_Sorting_Element_Count.Value)).ToString();
         }
+        #endregion
+
+        
     }
 }
