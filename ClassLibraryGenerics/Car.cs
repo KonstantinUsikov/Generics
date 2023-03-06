@@ -77,7 +77,6 @@
         /// Конструктор по умолчанию.
         /// </summary>
         public Car() {
-            string[] brands = new string[] { "Vol", "Toy", "For", "BMW", "Hon", "Hyu", "Ren", "Aud", "Lad", "Lex" };
             Color[] colors = new Color[] { Color.Red, Color.Green, Color.Blue, Color.Gray, Color.White, Color.Black };
             Random r = new Random();
             brand = brands[r.Next(0, brands.Length - 1)];
