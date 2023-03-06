@@ -9,12 +9,9 @@
         public static string[] mensLastNames = new string[] { "Иванов", "Миронов", "Усиков", "Орлов", "Рогов", "Воробьёв", "Доронин", "Филатов", "Трофимов", "Ермаков", "Моисеев", "Князев", "Лебедев", "Рябов", "Михеев", "Капустин", "Кузьмин", "Баранов", "Герасимов", "Евсеев", "Кулаков", "Носков", "Котов", "Некрасов", "Григорьев", "Никонов", "Афанасьев", "Степанов", "Белов", "Воронцов" };
         public static string[] mensFirstNames = new string[] { "Артём", "Максим", "Константин", "Дмитрий", "Алексей", "Святослав", "Афанасий", "Платон", "Ярослав", "Ефим", "Григорий", "Тихон", "Вадим", "Эдуард", "Леонид", "Борис", "Юрий", "Данила", "Александр", "Семён", "Василий", "Глеб", "Богдан", "Артур", "Денис", "Илья", "Виталий", "Филипп", "Иван", "Александр" };
         public static string[] mensPatronomics = new string[] { "Владимирович", "Александрович", "Дмитриевич", "Сергеевич", "Никитич", "Алексеевич", "Святославович", "Афанасьевич", "Ярославович", "Ефимович", "Григорьевич", "Тихонович", "Вадимович", "Эдуардович", "Леонидович", "Борисович", "Юрьевич", "Данилович", "Александрович", "Семёнович", "Васильевич", "Глебович", "Богданович", "Артурович", "Денисович", "Ильич", "Витальевич", "Филиппович", "Иванович", "Максимович" };
-
         private static string[] femaleLastNames = new string[] { "Иванова", "Миронова", "Усикова", "Орлова", "Рогова", "Воробьёва", "Доронина", "Филатова", "Трофимова", "Ермакова", "Моисеева", "Князева", "Лебедева", "Рябова", "Михеева", "Капустина", "Кузьмина", "Баранова", "Герасимова", "Евсеева", "Кулакова", "Носкова", "Котова", "Некрасова", "Григорьева", "Никонова", "Афанасьева", "Степанова", "Белова", "Воронцова" };
         private static string[] femaleFirstNames = new string[] { "Наталья", "София", "Яна", "Екатерина", "Злата", "Ника", "Галина", "Лилиана", "Альбина", "Валентина", "Анжелика", "Вера", "Людмила", "Светлана", "Карина", "Кристина", "Лидия", "Майя", "Александра", "Элеонора", "Любовь", "Варвара", "Дарья", "Лариса", "Ульяна", "Маргарита", "Юлиана", "Анфиса", "Раиса" };
         private static string[] femalePatronomics = new string[] { "Владимировна", "Александровна", "Дмитриевна", "Сергеевна", "Никитична", "Алексеевна", "Святославовна", "Афанасьевна", "Ярославовна", "Ефимовна", "Григорьевна", "Тихоновна", "Вадимовна", "Эдуардовна", "Леонидовна", "Борисовна", "Юрьевна", "Даниловна", "Александровна", "Семёновна", "Васильевна", "Глебовна", "Богдановна", "Артуровна", "Денисовна", "Ильинична", "Витальевна", "Филипповна", "Ивановна", "Максимовна" };
-
-        private static string[] genders = new string[] { "Мужской", "Женский" };
 
         private string lastName;  // фамилия
         private string firstName;  // имя
@@ -87,26 +84,23 @@
         /// </summary>
         public Student()
         {
-           
             Random r = new Random();
-            string gender;
-            gender = genders[r.Next(0, genders.Length)];
-            if (gender == "Мужской")
+            if (r.Next(0, 2) == 0)
             {
-                lastName = mensLastNames[r.Next(0, mensLastNames.Length - 1)];
-                firstName = mensFirstNames[r.Next(0, mensFirstNames.Length - 1)];
-                patronymic = mensPatronomics[r.Next(0, mensPatronomics.Length - 1)];
+                lastName = mensLastNames[r.Next(0, mensLastNames.Length)];
+                firstName = mensFirstNames[r.Next(0, mensFirstNames.Length)];
+                patronymic = mensPatronomics[r.Next(0, mensPatronomics.Length)];
             }
             else
             {
-                lastName = femaleLastNames[r.Next(0, femaleLastNames.Length - 1)];
-                firstName = femaleFirstNames[r.Next(0, femaleFirstNames.Length - 1)];
-                patronymic = femalePatronomics[r.Next(0, femalePatronomics.Length - 1)];
+                lastName = femaleLastNames[r.Next(0, femaleLastNames.Length)];
+                firstName = femaleFirstNames[r.Next(0, femaleFirstNames.Length)];
+                patronymic = femalePatronomics[r.Next(0, femalePatronomics.Length)];
             }
-            age = r.Next(1, 100);
-            height = Math.Round(r.Next(140, 210) + r.NextDouble(), 1);
-            weight = Math.Round(r.Next(45, 110) + r.NextDouble(), 1);
-            averageMark = Math.Round(2 + r.NextDouble() * 3, 3);
+            age = r.Next(17, 30);
+            height = Math.Round(r.Next(160, 200) + r.NextDouble(), 1);
+            weight = Math.Round(r.Next(50, 100) + r.NextDouble(), 1);
+            averageMark = Math.Round(3 * r.NextDouble() + 2, 1);
         }
 
         /// <summary>
@@ -131,7 +125,11 @@
         /// <returns> строковое представление полей класса </returns>
         public override string ToString()
         {
-            return $"ФИО: {lastName} {firstName} {patronymic}\n" + $"Возраст: {age}\n" + $"Рост: {height}\n" +  $"Вес: {weight}\n" + $"Средний Балл: {averageMark}";
+            return $"ФИО: {lastName} {firstName} {patronymic}\n" + 
+                   $"Возраст: {age}\n" + 
+                   $"Рост: {height}\n" +  
+                   $"Вес: {weight}\n" + 
+                   $"Средний балл: {averageMark}";
         }
         #endregion
 

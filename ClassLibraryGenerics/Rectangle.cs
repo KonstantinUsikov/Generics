@@ -49,8 +49,8 @@
         public Rectangle()
         {
             Random r = new Random();
-            a = r.NextDouble() * 50;
-            b = r.NextDouble() * 50;
+            a = Math.Round(50 * r.NextDouble(), 1);
+            b = Math.Round(50 * r.NextDouble(), 1);
         }
 
         /// <summary>
@@ -74,7 +74,10 @@
         /// <returns> строковое представление полей класса </returns>
         public override string ToString()
         {
-            return $"Сторона А: {A}\n" + $"Сторона Б: {B}\n" + $"Периметр: {Perimeter}\n" + $"Площадь: {Area}";
+            return $"Сторона А: {A}\n" + 
+                   $"Сторона Б: {B}\n" + 
+                   $"Периметр: {Math.Round(Perimeter, 1)}\n" + 
+                   $"Площадь: {Math.Round(Area, 1)}";
         }
         #endregion
 
