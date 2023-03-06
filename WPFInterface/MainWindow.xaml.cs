@@ -97,8 +97,14 @@ namespace WPFInterface {
 
         #region Collections
 
-        MyStack<object> st = new();
-        MyQueue<object> qu = new();
+        MyStack<Car> stCar = new();
+        MyQueue<Car> quCar = new();
+
+        MyStack<Student> stStudent = new();
+        MyQueue<Student> quStudent = new();
+
+        MyStack<Rectangle> stRectangle = new();
+        MyQueue<Rectangle> quRectangle = new();
 
         private void Add_Element(object sender, RoutedEventArgs e) {
             if (!IsInitialized) return;
@@ -118,10 +124,10 @@ namespace WPFInterface {
                         adder.Text = car.ToString();
                         adder.Height = 170;
                         if (selectedCollection == "Стэк") {
-                            st.Add(car);
+                            stCar.Add(car);
                             WrP_Collection.Children.Insert(0, adder);
                         } else {
-                            qu.Add(car);
+                            quCar.Add(car);
                             WrP_Collection.Children.Add(adder);
                         }
                         break;
@@ -131,10 +137,10 @@ namespace WPFInterface {
                         adder.Text = student.ToString();
                         adder.Height = 150;
                         if (selectedCollection == "Стэк") {
-                            st.Add(student);
+                            stStudent.Add(student);
                             WrP_Collection.Children.Insert(0, adder);
                         } else {
-                            qu.Add(student);
+                            quStudent.Add(student);
                             WrP_Collection.Children.Add(adder);
                         }
                         break;
@@ -144,10 +150,10 @@ namespace WPFInterface {
                         adder.Text = rectangle.ToString();
                         adder.Height = 130;
                         if (selectedCollection == "Стэк") {
-                            st.Add(rectangle);
+                            stRectangle.Add(rectangle);
                             WrP_Collection.Children.Insert(0, adder);
                         } else {
-                            qu.Add(rectangle);
+                            quRectangle.Add(rectangle);
                             WrP_Collection.Children.Add(adder);
                         }
                         break;
@@ -160,24 +166,56 @@ namespace WPFInterface {
 
         private void Remove_Element(object sender, RoutedEventArgs e) {
             if (!IsInitialized) return;
+            string[] types = new string[] { "Автомобиль", "Студент", "Прямоугольник" };
+            int selectedTypeIndex = Cb_Type_Collection.SelectedIndex;
+            string selectedType = types[selectedTypeIndex];
             if (Cb_Collection.SelectedIndex == 0) {
-                if (st.Count == 0) return;
-                st.Remove();
+                if (selectedType == "Автомобиль")
+                {
+                    if (stCar.Count == 0) return;
+                    stCar.Remove();
+                }
+                else if (selectedType == "Студент")
+                {
+                    if (stStudent.Count == 0) return;
+                    stStudent.Remove();
+                }
+                else if (selectedType == "Прямоугольник")
+                {
+                    if (stRectangle.Count == 0) return;
+                    stRectangle.Remove();
+                }
                 WrP_Collection.Children.RemoveAt(0);
             } else {
-                if (qu.Count == 0) return;
-                qu.Remove();
+                if (selectedType == "Автомобиль")
+                {
+                    if (quCar.Count == 0) return;
+                    quCar.Remove();
+                }
+                else if (selectedType == "Студент")
+                {
+                    if (quStudent.Count == 0) return;
+                    quStudent.Remove();
+                }
+                else if (selectedType == "Прямоугольник")
+                {
+                    if (quRectangle.Count == 0) return;
+                    quRectangle.Remove();
+                }
                 WrP_Collection.Children.RemoveAt(0);
             }
         }
 
         private void Clear_Collection(object sender, RoutedEventArgs e) {
             if (!IsInitialized) return;
-            st = new();
-            qu = new();
+            stCar = new();
+            quCar = new();
+            stStudent = new();
+            quStudent = new();
+            stRectangle = new();
+            quRectangle = new();
             WrP_Collection.Children.Clear();
         }
-
         #endregion
 
         #region Sorting
