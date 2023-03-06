@@ -3,7 +3,7 @@
     /// <summary>
     /// Класс "Прямоугольник".
     /// </summary>
-    public class Rectangle: IType
+    public class Rectangle
     {
         #region Поля
         private double a;  // меньшая сторона прямоугольника

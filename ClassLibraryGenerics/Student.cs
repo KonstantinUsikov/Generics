@@ -3,7 +3,7 @@
     /// <summary>
     /// Класс "Студент".
     /// </summary>
-    public class Student: IType
+    public class Student
     {
         #region Поля
         private string lastName;  // фамилия

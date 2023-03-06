@@ -97,8 +97,8 @@ namespace WPFInterface {
 
         #region Collections
 
-        MyStack<IType> st = new();
-        MyQueue<IType> qu = new();
+        MyStack<object> st = new();
+        MyQueue<object> qu = new();
 
         private void Add_Element(object sender, RoutedEventArgs e) {
             if (!IsInitialized) return;

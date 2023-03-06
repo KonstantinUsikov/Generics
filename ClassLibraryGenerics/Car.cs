@@ -18,7 +18,7 @@
     /// <summary>
     /// Класс "Автомобиль".
     /// </summary>
-    public class Car : IType {
+    public class Car {
         #region Поля
         private static string[] brands = new string[] { "Audi", "BMW", "Ford", "Honda", "Hyundai", "Kia", "Lada", "Mazda", "Mercedes-Benz", "Mitsubishi", "Nissan", "Renault", "Skoda", "Toyota", "Volkswagen", "Lexus", "Subaru", "Suzuki", "Cadillac", "Chevrolet", "Hummer", "Jeep", "Tesla", "Opel", "Porsche", "Bentley", "Bugatti", "Citroen", "Ferrari", "Fiat", "Jaguar", "Lamborghini", "Land Rover", "Maserati", "Maybach", "Peugeot", "Rolls-Royce", "Rover", "Volvo", "Smart" };
 

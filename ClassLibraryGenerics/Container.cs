@@ -116,6 +116,4 @@
         public abstract T Peek();
         #endregion
     }
-
-    public interface IType { }
 }
