@@ -107,7 +107,12 @@
         /// </summary>
         /// <returns> строковое представление полей класса </returns>
         public override string ToString() {
-            return $"brand = {brand}, year = {year}, maxSpeed = {maxSpeed}, volume = {volume}, color = {color}, mileage = {mileage}";
+            return $"Бренд {brand}\n" +
+                   $"Год Выпуска {year}\n" +
+                   $"Максимальная Скорость {maxSpeed}\n" +
+                   $"Объем Двигателя {volume}\n" +
+                   $"Цвет {color}\n" +
+                   $"Пробег {mileage}";
         }
         #endregion
 
