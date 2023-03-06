@@ -243,7 +243,7 @@ namespace WPFInterface {
 
             switch (Cb_Sorting.SelectedIndex) {
                 case 0: {
-                        for (int i = 0; i < 10; i++) {
+                        for (int i = 0; i < Sld_Sorting_Element_Count.Value; i++) {
                             Student adding = new Student();
                             students.Add(adding);
                         }
@@ -251,7 +251,7 @@ namespace WPFInterface {
                         break;
                     }
                 case 1: {
-                        for (int i = 0; i < 10; i++) {
+                        for (int i = 0; i < Sld_Sorting_Element_Count.Value; i++) {
                             Car adding = new Car();
                             cars.Add(adding);
                         }
@@ -259,7 +259,7 @@ namespace WPFInterface {
                         break;
                     }
                 case 2: {
-                        for (int i = 0; i < 10; i++) {
+                        for (int i = 0; i < Sld_Sorting_Element_Count.Value; i++) {
                             Rectangle adding = new Rectangle(rnd.NextDouble() * 100, rnd.NextDouble() * 100);
                             rectangles.Add(adding);
                         }
@@ -274,48 +274,59 @@ namespace WPFInterface {
 
         void Refill_Panel() {
             WrP_Sorting.Children.Clear();
+            const int max_element_Count = 100;
             switch (Cb_Sorting.SelectedIndex) {
-                case 0: {
-                        foreach (var student in students) {
-                            string adder = student.ToString();
-                            TextBox aa = new();
-                            aa.Text = adder;
-                            aa.Margin = new(2);
-                            aa.Height = 150;
-                            aa.Width = 400;
-                            aa.IsReadOnly = true;
-                            WrP_Sorting.Children.Add(aa);
-                        }
+                case 0:
+                {
+                    for (var index = 0; index < Math.Min(students.Count,max_element_Count); index++)
+                    {
+                        var student = students[index];
+                        string adder = student.ToString();
+                        TextBox aa = new();
+                        aa.Text = adder;
+                        aa.Margin = new(2);
+                        aa.Height = 150;
+                        aa.Width = 400;
+                        aa.IsReadOnly = true;
+                        WrP_Sorting.Children.Add(aa);
+                    }
 
-                        break;
+                    break;
+                }
+                case 1:
+                {
+                    for (var index = 0; index < Math.Min(cars.Count,max_element_Count); index++)
+                    {
+                        var car = cars[index];
+                        string adder = car.ToString();
+                        TextBox aa = new();
+                        aa.Text = adder;
+                        aa.Margin = new(2);
+                        aa.Height = 170;
+                        aa.Width = 400;
+                        aa.IsReadOnly = true;
+                        WrP_Sorting.Children.Add(aa);
                     }
-                case 1: {
-                        foreach (var car in cars) {
-                            string adder = car.ToString();
-                            TextBox aa = new();
-                            aa.Text = adder;
-                            aa.Margin = new(2);
-                            aa.Height = 170;
-                            aa.Width = 400;
-                            aa.IsReadOnly = true;
-                            WrP_Sorting.Children.Add(aa);
-                        }
 
-                        break;
+                    break;
+                }
+                case 2:
+                {
+                    for (var index = 0; index < Math.Min(rectangles.Count,max_element_Count); index++)
+                    {
+                        var rectangle = rectangles[index];
+                        string adder = rectangle.ToString();
+                        TextBox aa = new();
+                        aa.Text = adder;
+                        aa.Margin = new(2);
+                        aa.Height = 130;
+                        aa.Width = 400;
+                        aa.IsReadOnly = true;
+                        WrP_Sorting.Children.Add(aa);
                     }
-                case 2: {
-                        foreach (var rectangle in rectangles) {
-                            string adder = rectangle.ToString();
-                            TextBox aa = new();
-                            aa.Text = adder;
-                            aa.Margin = new(2);
-                            aa.Height = 130;
-                            aa.Width = 400;
-                            aa.IsReadOnly = true;
-                            WrP_Sorting.Children.Add(aa);
-                        }
-                        break;
-                    }
+
+                    break;
+                }
                 default:
                     throw new IndexOutOfRangeException();
             }
@@ -556,5 +567,10 @@ namespace WPFInterface {
         }
 
         #endregion
+
+        private void Sld_Sorting_Element_Count_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Sld_Sorting_Element_Count.ToolTip = Sld_Sorting_Element_Count.Value;
+        }
     }
 }

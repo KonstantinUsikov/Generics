@@ -88,6 +88,7 @@
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="Тип данных">
@@ -120,24 +121,26 @@
                             <ComboBoxItem Content="Быстрая"/>
                         </ComboBox>
                     </GroupBox>
-                    <GroupBox Grid.Row="3" Header="Действия">
+                    <GroupBox Grid.Row="3" Header="Количество элементов">
+                        <Slider Name="Sld_Sorting_Element_Count" Minimum="2" Maximum="10000" ValueChanged="Sld_Sorting_Element_Count_OnValueChanged" />
+                    </GroupBox>
+                    <GroupBox Grid.Row="4" Header="Действия">
                         <StackPanel Orientation="Horizontal">
                             <Button Content="Заполнить" Click="Sorting_Fill" Margin="2"/>
                             <Button Content="Сортировать" Click="Sorting_Sort" Margin="2"/>
                             <Button Content="Очистить" Click="Sorting_Clear" Margin="2"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Row="4" Header="Вывод">
+                    <GroupBox Grid.Row="5" Header="Вывод">
                         <StackPanel Orientation="Horizontal">
                             <CheckBox VerticalContentAlignment="Center" Name="Tg_Ascending" Content="По Возрастанию" Margin="2"/>
                             <TextBox Name="Tx_Sorting_Result" Width="300" Margin="20,0,0,0" IsReadOnly="True"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Grid.Row="5" Header="Организация">
+                    <GroupBox Grid.Row="6" Header="Организация">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                             <WrapPanel Orientation="Horizontal" Name="WrP_Sorting"/>
                         </ScrollViewer>
-
                     </GroupBox>
                 </Grid>
             </TabItem>
