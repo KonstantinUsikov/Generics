@@ -270,10 +270,7 @@ namespace WPFInterface {
                     }
                 case 2: {
                         foreach (var rectangle in rectangles) {
-                            string adder = $"Сторона А: {rectangle.A}\n" +
-                                           $"Сторона Б: {rectangle.B}\n" +
-                                           $"Периметр: {rectangle.Perimeter}\n" +
-                                           $"Площадь: {rectangle.Area}";
+                            string adder = rectangle.ToString();
                             TextBox aa = new();
                             aa.Text = adder;
                             aa.Margin = new(2);

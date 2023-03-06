@@ -106,7 +106,7 @@
             age = r.Next(1, 100);
             height = r.Next(140, 210);
             weight = r.Next(45, 110);
-            averageMark = 2 + r.NextDouble() * 3;
+            averageMark = Math.Round(2 + r.NextDouble() * 3, 3);
         }
 
         /// <summary>
