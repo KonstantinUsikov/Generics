@@ -104,8 +104,8 @@
                 patronymic = femalePatronomics[r.Next(0, femalePatronomics.Length - 1)];
             }
             age = r.Next(1, 100);
-            height = r.Next(140, 210);
-            weight = r.Next(45, 110);
+            height = Math.Round(r.Next(140, 210) + r.NextDouble(), 1);
+            weight = Math.Round(r.Next(45, 110) + r.NextDouble(), 1);
             averageMark = Math.Round(2 + r.NextDouble() * 3, 3);
         }
 

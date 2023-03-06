@@ -206,9 +206,7 @@ namespace WPFInterface {
             switch (Cb_Sorting.SelectedIndex) {
                 case 0: {
                         for (int i = 0; i < 10; i++) {
-                            Student adding = new Student(Random_String(rnd.Next(3, 20)), Random_String(rnd.Next(3, 20)),
-                                Random_String(rnd.Next(3, 20)), rnd.Next(18, 30), 150 + (rnd.NextDouble() * 60),
-                                50 + (rnd.NextDouble() * 50), 2 + (rnd.NextDouble() * 3));
+                            Student adding = new Student();
                             students.Add(adding);
                         }
 
@@ -216,8 +214,7 @@ namespace WPFInterface {
                     }
                 case 1: {
                         for (int i = 0; i < 10; i++) {
-                            Car adding = new Car(Random_String(rnd.Next(3, 12)), rnd.Next(-1000, 3000), rnd.NextDouble() * 1000, rnd.NextDouble() * 1000,
-                                (Color)rnd.Next((int)Color.White, (int)Color.Violet + 1), rnd.NextDouble() * 1000000);
+                            Car adding = new Car();
                             cars.Add(adding);
                         }
 
