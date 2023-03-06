@@ -1,11 +1,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ClassLibraryGenerics;
+using System;
 
-namespace TestProjectGenerics {
+namespace TestProjectGenerics
+{
     [TestClass]
-    public class UnitTest {
+    public class SortUnitTest
+    {
         [TestMethod]
-        public void BubleSortTest() {
+        public void BubleSortTest()
+        {
             Rectangle rect1 = new Rectangle(5, 6);
             Rectangle rect2 = new Rectangle(10, 12);
             Rectangle rect3 = new Rectangle(3, 13);
@@ -21,7 +25,8 @@ namespace TestProjectGenerics {
         }
 
         [TestMethod]
-        public void InsertSortTest() {
+        public void InsertSortTest()
+        {
             Rectangle rect1 = new Rectangle(5, 6);
             Rectangle rect2 = new Rectangle(10, 12);
             Rectangle rect3 = new Rectangle(3, 13);
@@ -37,7 +42,8 @@ namespace TestProjectGenerics {
         }
 
         [TestMethod]
-        public void MergeSortTest() {
+        public void MergeSortTest()
+        {
             Rectangle rect1 = new Rectangle(5, 6);
             Rectangle rect2 = new Rectangle(10, 12);
             Rectangle rect3 = new Rectangle(3, 13);
@@ -53,7 +59,8 @@ namespace TestProjectGenerics {
         }
 
         [TestMethod]
-        public void QuickSortTest() {
+        public void QuickSortTest()
+        {
             Rectangle rect1 = new Rectangle(5, 6);
             Rectangle rect2 = new Rectangle(10, 12);
             Rectangle rect3 = new Rectangle(3, 13);
@@ -69,7 +76,8 @@ namespace TestProjectGenerics {
         }
 
         [TestMethod]
-        public void AllSortsTest() {
+        public void AllSortsTest()
+        {
             Rectangle rect1 = new Rectangle(5, 6);
             Rectangle rect2 = new Rectangle(10, 12);
             Rectangle rect3 = new Rectangle(3, 13);
@@ -83,7 +91,8 @@ namespace TestProjectGenerics {
             Sorter.InsertSort(arr2, Rectangle.ComparerMinSide, true);
             Sorter.MergeSort(arr3, Rectangle.ComparerMinSide, true);
             Sorter.QuickSort(arr4, Rectangle.ComparerMinSide, true);
-            for (int i = 0; i < arr1.Length; i++) {
+            for (int i = 0; i < arr1.Length; i++)
+            {
                 Assert.AreEqual(arr1[i], arr2[i]);
                 Assert.AreEqual(arr1[i], arr3[i]);
                 Assert.AreEqual(arr1[i], arr4[i]);
@@ -92,7 +101,11 @@ namespace TestProjectGenerics {
                 Assert.AreEqual(arr3[i], arr4[i]);
             }
         }
+    }
 
+    [TestClass]
+    public class StackQueueUnitTest
+    {
         [TestMethod]
         public void MyStackRectangleTest()
         {
@@ -169,6 +182,7 @@ namespace TestProjectGenerics {
             Assert.AreEqual(q.Count, 0);
         }
 
+        [TestMethod]
         public void MyStackStudentTest()
         {
             Student student1 = new Student("Иванов", "Иван", "Иванович", 18, 180, 75, 4.5);
@@ -198,6 +212,104 @@ namespace TestProjectGenerics {
             Assert.AreEqual(q.Remove(), student2);
             Assert.AreEqual(q.Remove(), student3);
             Assert.AreEqual(q.Count, 0);
+        }
+    }
+
+    [TestClass]
+    public class IntegralUnitTest
+    {
+        [TestMethod]
+        public void IntegralTest1()
+        {
+            double a = 1;
+            double b = 2;
+            int steps = 100000;
+            double test = Math.Round(Mathematics.Integral((x) => x * x, a, b, steps), 2);
+            double test2 = Math.Round(Mathematics.Integral((x) => x, a, b, steps), 2);
+            double test3 = Math.Round(Mathematics.Integral((x) => Math.Sin(x), a, b, steps), 3);
+            double test4 = Math.Round(Mathematics.Integral((x) => Math.Cos(x), a, b, steps), 3);
+
+            Assert.AreEqual(test, 2.33);
+            Assert.AreEqual(test2, 1.50);
+            Assert.AreEqual(test3, 0.956);
+            Assert.AreEqual(test4, 0.068);
+        }
+
+        [TestMethod]
+        public void IntegralTest2()
+        {
+            double a = 0;
+            double b = 100;
+            int steps = 100000000;
+            double test = Math.Round(Mathematics.Integral((x) => x * x, a, b, steps), 2);
+            double test2 = Math.Round(Mathematics.Integral((x) => x, a, b, steps), 2);
+            double test3 = Math.Round(Mathematics.Integral((x) => Math.Sin(x), a, b, steps), 3);
+            double test4 = Math.Round(Mathematics.Integral((x) => Math.Cos(x), a, b, steps), 3);
+
+            Assert.AreEqual(test, 333333.33);
+            Assert.AreEqual(test2, 5000.00);
+            Assert.AreEqual(test3, 0.138);
+            Assert.AreEqual(test4, -0.506);
+        }
+
+        [TestMethod]
+        public void IntegralParallelTest1()
+        {
+            double a = 1;
+            double b = 2;
+            int steps = 100000;
+            double test = Math.Round(Mathematics.IntegralParallel((x) => x * x, a, b, steps), 2);
+            double test2 = Math.Round(Mathematics.IntegralParallel((x) => x, a, b, steps), 2);
+            double test3 = Math.Round(Mathematics.IntegralParallel((x) => Math.Sin(x), a, b, steps), 3);
+            double test4 = Math.Round(Mathematics.IntegralParallel((x) => Math.Cos(x), a, b, steps), 3);
+
+            Assert.AreEqual(test, 2.33);
+            Assert.AreEqual(test2, 1.50);
+            Assert.AreEqual(test3, 0.956);
+            Assert.AreEqual(test4, 0.068);
+        }
+
+        [TestMethod]
+        public void IntegralParallelTest2()
+        {
+            double a = 0;
+            double b = 100;
+            int steps = 100000000;
+            double test = Math.Round(Mathematics.IntegralParallel((x) => x * x, a, b, steps), 2);
+            double test2 = Math.Round(Mathematics.IntegralParallel((x) => x, a, b, steps), 2);
+            double test3 = Math.Round(Mathematics.IntegralParallel((x) => Math.Sin(x), a, b, steps), 3);
+            double test4 = Math.Round(Mathematics.IntegralParallel((x) => Math.Cos(x), a, b, steps), 3);
+
+            Assert.AreEqual(test, 333333.33);
+            Assert.AreEqual(test2, 5000.00);
+            Assert.AreEqual(test3, 0.138);
+            Assert.AreEqual(test4, -0.506);
+        }
+
+        [TestMethod]
+        public void AllIntegralTest()
+        {
+            double a = 3;
+            double b = 10;
+            int steps = 100000000;
+            double integralTest = Math.Round(Mathematics.IntegralParallel((x) => x * x, a, b, steps), 2);
+            double integralTest2 = Math.Round(Mathematics.IntegralParallel((x) => x, a, b, steps), 2);
+            double integralTest3 = Math.Round(Mathematics.IntegralParallel((x) => Math.Sin(x), a, b, steps), 3);
+            double integralTest4 = Math.Round(Mathematics.IntegralParallel((x) => Math.Cos(x), a, b, steps), 3);
+            double integralParallelTest = Math.Round(Mathematics.IntegralParallel((x) => x * x, a, b, steps), 2);
+            double integralParallelTest2 = Math.Round(Mathematics.IntegralParallel((x) => x, a, b, steps), 2);
+            double integralParallelTest3 = Math.Round(Mathematics.IntegralParallel((x) => Math.Sin(x), a, b, steps), 3);
+            double integralParallelTest4 = Math.Round(Mathematics.IntegralParallel((x) => Math.Cos(x), a, b, steps), 3);
+
+            Assert.AreEqual(integralTest, 324.33);
+            Assert.AreEqual(integralTest2, 45.50);
+            Assert.AreEqual(integralTest3, -0.151);
+            Assert.AreEqual(integralTest4, -0.685);
+
+            Assert.AreEqual(integralTest, integralParallelTest);
+            Assert.AreEqual(integralTest2, integralParallelTest2);
+            Assert.AreEqual(integralTest3, integralParallelTest3);
+            Assert.AreEqual(integralTest4, integralParallelTest4);
         }
     }
 }

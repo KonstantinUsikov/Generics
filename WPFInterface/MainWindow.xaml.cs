@@ -260,7 +260,7 @@ namespace WPFInterface {
                     }
                 case 2: {
                         for (int i = 0; i < Sld_Sorting_Element_Count.Value; i++) {
-                            Rectangle adding = new Rectangle(rnd.NextDouble() * 100, rnd.NextDouble() * 100);
+                            Rectangle adding = new Rectangle();
                             rectangles.Add(adding);
                         }
 
@@ -542,7 +542,7 @@ namespace WPFInterface {
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Рост" });
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Вес" });
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Средний Балл" });
-                    Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Комплексный" });
+                    Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Комплексный (средний балл - возраст - рост - вес)" });
                     break;
                 case 1:
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Название Брэнда", IsSelected = true });
@@ -552,7 +552,7 @@ namespace WPFInterface {
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Объем двигателя" });
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Пробег" });
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Цвет" });
-                    Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Комплексный" });
+                    Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Комплексный (максимальная скорость - объем двигателя - пробег - год выпуска)" });
                     break;
                 case 2:
                     Cb_Sort_Type.Items.Add(new ComboBoxItem() { Content = "Периметр", IsSelected = true });

@@ -39,7 +39,7 @@
                     <GroupBox Grid.Row="4" Header="Параллельность">
                         <StackPanel Orientation="Horizontal">
                             <RadioButton Name="Rb_Parallel" VerticalContentAlignment="Center" Content="Параллельно" IsChecked="True" Checked="Try_Calc_Integral"/>
-                            <RadioButton VerticalContentAlignment="Center" Content="Не параллельно" Checked="Try_Calc_Integral"/>
+                            <RadioButton VerticalContentAlignment="Center" Content="Не параллельно" Checked="Try_Calc_Integral" Margin="10,0,0,0"/>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Grid.Row="5" Header="Вывод">
@@ -57,7 +57,7 @@
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="Тип">
                         <ComboBox Name="Cb_Collection" SelectionChanged="Clear_Collection">
-                            <ComboBoxItem Content="Стэк" IsSelected="True"/>
+                            <ComboBoxItem Content="Стек" IsSelected="True"/>
                             <ComboBoxItem Content="Очередь"/>
                         </ComboBox>
                     </GroupBox>
@@ -110,7 +110,7 @@
                             <ComboBoxItem Content="Рост"/>
                             <ComboBoxItem Content="Вес"/>
                             <ComboBoxItem Content="Средний Балл"/>
-                            <ComboBoxItem Content="Комплексный"/>
+                            <ComboBoxItem Content="Комплексный (средний балл - возраст - рост - вес)"/>
                         </ComboBox>
                     </GroupBox>
                     <GroupBox Grid.Row="2" Header="Метод Сортироваки">
