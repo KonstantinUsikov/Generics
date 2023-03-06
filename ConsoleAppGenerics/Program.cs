@@ -12,3 +12,5 @@ sw.Restart();
 Console.WriteLine(Mathematics.IntegralParallel((x) => x * x, 0, 1, 100_000_000));
 sw.Stop();
 Console.WriteLine(sw.ElapsedMilliseconds);
+var s = new Student();
+Console.WriteLine(s.ToString());

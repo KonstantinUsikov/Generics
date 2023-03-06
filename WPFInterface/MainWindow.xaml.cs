@@ -115,12 +115,7 @@ namespace WPFInterface {
             switch (selectedType) {
                 case "Автомобиль": {
                         Car car = new();
-                        adder.Text = $"Брэнд: {car.Brand}\n" +
-                                     $"Год Выпуска: {car.Year}\n" +
-                                     $"Пробег: {car.Mileage}\n" +
-                                     $"Максимальная Скорость: {car.MaxSpeed}\n" +
-                                     $"Цвет: {car.Color}\n" +
-                                     $"Объем Двигателя: {car.Volume}";
+                        adder.Text = car.ToString();
                         adder.Height = 170;
                         if (selectedCollection == "Стэк") {
                             st.Add(car);
@@ -133,11 +128,7 @@ namespace WPFInterface {
                     }
                 case "Студент": {
                         Student student = new();
-                        adder.Text = $"ФИО: {student.LastName} {student.FirstName} {student.Patronymic}\n" +
-                                     $"Возраст: {student.Age}\n" +
-                                     $"Рост: {student.Height}\n" +
-                                     $"Вес: {student.Weight}\n" +
-                                     $"Средний Балл: {student.AverageMark}";
+                        adder.Text = student.ToString();
                         adder.Height = 150;
                         if (selectedCollection == "Стэк") {
                             st.Add(student);
@@ -150,10 +141,7 @@ namespace WPFInterface {
                     }
                 case "Прямоугольник": {
                         Rectangle rectangle = new();
-                        adder.Text = $"Сторона А: {rectangle.A}\n" +
-                                     $"Сторона Б: {rectangle.B}\n" +
-                                     $"Периметр: {rectangle.Perimeter}\n" +
-                                     $"Площадь: {rectangle.Area}";
+                        adder.Text = rectangle.ToString();
                         adder.Height = 130;
                         if (selectedCollection == "Стэк") {
                             st.Add(rectangle);
@@ -218,9 +206,7 @@ namespace WPFInterface {
             switch (Cb_Sorting.SelectedIndex) {
                 case 0: {
                         for (int i = 0; i < 10; i++) {
-                            Student adding = new Student(Random_String(rnd.Next(3, 20)), Random_String(rnd.Next(3, 20)),
-                                Random_String(rnd.Next(3, 20)), rnd.Next(18, 30), 150 + (rnd.NextDouble() * 60),
-                                50 + (rnd.NextDouble() * 50), 2 + (rnd.NextDouble() * 3));
+                            Student adding = new Student();
                             students.Add(adding);
                         }
 
@@ -228,8 +214,7 @@ namespace WPFInterface {
                     }
                 case 1: {
                         for (int i = 0; i < 10; i++) {
-                            Car adding = new Car(Random_String(rnd.Next(3, 12)), rnd.Next(-1000, 3000), rnd.NextDouble() * 1000, rnd.NextDouble() * 1000,
-                                (Color)rnd.Next((int)Color.White, (int)Color.Violet + 1), rnd.NextDouble() * 1000000);
+                            Car adding = new Car();
                             cars.Add(adding);
                         }
 
@@ -254,11 +239,7 @@ namespace WPFInterface {
             switch (Cb_Sorting.SelectedIndex) {
                 case 0: {
                         foreach (var student in students) {
-                            string adder = $"ФИО: {student.LastName} {student.FirstName} {student.Patronymic}\n" +
-                                           $"Возраст: {student.Age}\n" +
-                                           $"Рост: {student.Height}\n" +
-                                           $"Вес: {student.Weight}\n" +
-                                           $"Средний Балл: {student.AverageMark}";
+                            string adder = student.ToString();
                             TextBox aa = new();
                             aa.Text = adder;
                             aa.Margin = new(2);
@@ -272,12 +253,7 @@ namespace WPFInterface {
                     }
                 case 1: {
                         foreach (var car in cars) {
-                            string adder = $"Брэнд: {car.Brand}\n" +
-                                           $"Год Выпуска: {car.Year}\n" +
-                                           $"Пробег: {car.Mileage}\n" +
-                                           $"Максимальная Скорость: {car.MaxSpeed}\n" +
-                                           $"Цвет: {car.Color}\n" +
-                                           $"Объем Двигателя: {car.Volume}";
+                            string adder = car.ToString();
                             TextBox aa = new();
                             aa.Text = adder;
                             aa.Margin = new(2);
@@ -291,10 +267,7 @@ namespace WPFInterface {
                     }
                 case 2: {
                         foreach (var rectangle in rectangles) {
-                            string adder = $"Сторона А: {rectangle.A}\n" +
-                                           $"Сторона Б: {rectangle.B}\n" +
-                                           $"Периметр: {rectangle.Perimeter}\n" +
-                                           $"Площадь: {rectangle.Area}";
+                            string adder = rectangle.ToString();
                             TextBox aa = new();
                             aa.Text = adder;
                             aa.Margin = new(2);
