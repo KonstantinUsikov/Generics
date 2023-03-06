@@ -74,7 +74,7 @@
         /// <returns> строковое представление полей класса </returns>
         public override string ToString()
         {
-            return $"a = {a}, b = {b}";
+            return $"Сторона А: {A}\n" + $"Сторона Б: {B}\n" + $"Периметр: {Perimeter}\n" + $"Площадь: {Area}";
         }
         #endregion
 
